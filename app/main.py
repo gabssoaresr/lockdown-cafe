@@ -12,11 +12,11 @@ def go_to_cafe(friends: List[Dict[str, Any]], cafe: Cafe) -> str:
     for person in friends:
         try:
             cafe.visit_cafe(person)
-        except NotWearingMaskError:
-            masks_to_buy += 1
         except VaccineError:
             vaccinated = False
             break
+        except NotWearingMaskError:
+            masks_to_buy += 1
 
     if not vaccinated:
         return "All friends should be vaccinated"

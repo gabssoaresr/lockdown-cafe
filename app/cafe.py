@@ -16,11 +16,11 @@ class Cafe:
         self,
         visitor: Dict[str, Union[str, int, bool, Dict[str, date]]]
     ) -> str:
-        if not visitor["wearing_a_mask"]:
-            raise NotWearingMaskError()
-        elif not visitor.get("vaccine"):
+        if not visitor.get("vaccine"):
             raise NotVaccinatedError()
         elif visitor["vaccine"]["expiration_date"] < date.today():
             raise OutdatedVaccineError()
+        elif not visitor["wearing_a_mask"]:
+            raise NotWearingMaskError()
 
         return f"Welcome to {self.name}"
